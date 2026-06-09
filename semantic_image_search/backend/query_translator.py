@@ -1,4 +1,5 @@
 from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 from semantic_image_search.backend.config import Config
 from semantic_image_search.backend.logger import GLOBAL_LOGGER as log
@@ -14,10 +15,16 @@ class QueryTranslator:
         try:
             log.info("Initializing QueryTranslator...", model=Config.OPENAI_MODEL)
 
-            self.llm = ChatOpenAI(
+            # self.llm = ChatOpenAI(
+            #     model=Config.OPENAI_MODEL,
+            #     temperature=0,
+            #     timeout=20,     # prevents API hangs
+            # )
+            self.llm = ChatGroq(
                 model=Config.OPENAI_MODEL,
                 temperature=0,
                 timeout=20,     # prevents API hangs
+                api_key=Config.GROQ_API_KEY,
             )
 
             self.prompt_template = PromptTemplate(

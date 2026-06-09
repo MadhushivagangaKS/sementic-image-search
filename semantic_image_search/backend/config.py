@@ -64,18 +64,19 @@ class Config:
     else:
         log.warning("QDRANT_API_KEY missing in environment")
 
-    QDRANT_COLLECTION: str = os.getenv("QDRANT_COLLECTION", "semantic-image-search")
+    QDRANT_COLLECTION: str = os.getenv("QDRANT_COLLECTION", "sematic-image-search")
     log.info("QDRANT_COLLECTION loaded", value=QDRANT_COLLECTION)
 
     VECTOR_SIZE: int = int(os.getenv("VECTOR_SIZE", 512))
     log.info("VECTOR_SIZE loaded", value=VECTOR_SIZE)
 
     # ------------------- OPENAI -------------------
-    OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+    # OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+    OPENAI_MODEL: str = os.getenv("OPENAI_MODEL","openai/gpt-oss-120b")
     log.info("OPENAI_MODEL loaded", value=OPENAI_MODEL)
 
-    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY")
-    if not OPENAI_API_KEY:
+    GROQ_API_KEY: str = os.getenv("GROQ_API_KEY")
+    if not GROQ_API_KEY:
         log.warning("OPENAI_API_KEY missing")
 
 
